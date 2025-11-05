@@ -30,6 +30,12 @@ class Autor(models.Model):
         verbose_name = "Autor"
         verbose_name_plural = "Autores"
 
+    def __str__(self):
+        if self.pseudonimo:
+            return self.pseudonimo
+        else:
+            return self.nombre
+
 
 class Comuna(models.Model):
     codigo_comuna = models.CharField(max_length=5, null=False)
