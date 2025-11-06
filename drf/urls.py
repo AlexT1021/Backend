@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 
 
 from rest_framework import permissions
@@ -41,7 +42,11 @@ urlpatterns = [
     path('', views.pagina_inicio, name='home'),
     path('app_backend/', include('app_backend.urls')),
 
-    # URL's para documentación de API
-    path('apidocs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    # URLs para documentación de API
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redocs/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
+    #URLs para autenticación de la API
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
 ]
