@@ -49,4 +49,6 @@ urlpatterns = [
     #URLs para autenticación de la API
     path('accounts/', include('django.contrib.auth.urls')),
     path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    #path('registro/', views.registro, name='registro'),
 ]
